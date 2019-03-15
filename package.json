@@ -12,17 +12,10 @@
       "windows"
     ]
   },
-  "repository": "github:apache/cordova-plugin-media",
-  "bugs": "https://github.com/apache/cordova-plugin-media/issues",
-  "keywords": [
-    "cordova",
-    "media",
-    "ecosystem:cordova",
-    "cordova-android",
-    "cordova-browser",
-    "cordova-ios",
-    "cordova-windows"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/behandelcoach/cordova-plugin-media"
+  },
   "scripts": {
     "test": "npm run lint",
     "lint": "eslint ."

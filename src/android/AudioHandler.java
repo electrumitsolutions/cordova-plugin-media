@@ -81,13 +81,6 @@ public class AudioHandler extends CordovaPlugin {
         this.pausedForFocus = new ArrayList<AudioPlayer>();
     }
 
-
-    protected void getWritePermission(int requestCode)
-    {
-        PermissionHelper.requestPermission(this, requestCode, permissions[WRITE_EXTERNAL_STORAGE]);
-    }
-
-
     protected void getMicPermission(int requestCode)
     {
         PermissionHelper.requestPermission(this, requestCode, permissions[RECORD_AUDIO]);
@@ -538,13 +531,9 @@ public class AudioHandler extends CordovaPlugin {
 
     private void promptForRecord()
     {
-        if(PermissionHelper.hasPermission(this, permissions[WRITE_EXTERNAL_STORAGE])  &&
-                PermissionHelper.hasPermission(this, permissions[RECORD_AUDIO])) {
-            this.startRecordingAudio(recordId, FileHelper.stripFileProtocol(fileUriStr));
-        }
-        else if(PermissionHelper.hasPermission(this, permissions[RECORD_AUDIO]))
+        if(PermissionHelper.hasPermission(this, permissions[RECORD_AUDIO])) 
         {
-            getWritePermission(WRITE_EXTERNAL_STORAGE);
+            this.startRecordingAudio(recordId, FileHelper.stripFileProtocol(fileUriStr));
         }
         else
         {

@@ -30,6 +30,8 @@ description: Record and play audio on the device.
 
 This plugin provides the ability to record and play back audio files on a device.
 
+** This fork removes support for external storage from the standard plugin **
+
 __NOTE__: The current implementation does not adhere to a W3C
 specification for media capture, and is provided for convenience only.
 A future implementation will adhere to the latest W3C specification
