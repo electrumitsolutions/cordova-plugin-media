@@ -107,9 +107,12 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
     }
 
     private String generateTempFile() {
-      String tempFileName = handler.cordova.getActivity().getFilesDir().getAbsolutePath()
-                        + "/files/tmprecording-" + System.currentTimeMillis() + ".3gp";
-      LOG.d(LOG_TAG, "AudioPlayer File path: " + tempFileName);
+      String tempFileName = null;
+      if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+          tempFileName = Environment.getExternalCacheDir().getAbsolutePath() + "/tmprecording-" + System.currentTimeMillis() + ".3gp";
+      } else {
+          tempFileName = "/data/data/" + handler.cordova.getActivity().getPackageName() + "/cache/tmprecording-" + System.currentTimeMillis() + ".3gp";
+      }
       return tempFileName;
     }
 
@@ -182,7 +185,11 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
         /* this is a hack to save the file as the specified name */
 
         if (!file.startsWith("/")) {
-            file = handler.cordova.getActivity().getFilesDir().getAbsolutePath() + "/files/" + file;
+            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                file = Environment.getExternalCacheDir().getAbsolutePath() + File.separator + file;
+            } else {
+                file = "/data/data/" + handler.cordova.getActivity().getPackageName() + "/cache/" + file;
+            }
         }
 
         int size = this.tempFiles.size();
