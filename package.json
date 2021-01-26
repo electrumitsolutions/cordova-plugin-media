@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/behandelcoach/cordova-plugin-media"
+    "url": "https://github.com/electrumitsolutions/cordova-plugin-media"
   },
   "scripts": {
     "test": "npm run lint",

@@ -107,7 +107,10 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
     }
 
     private String generateTempFile() {
-      return "/data/data/" + handler.cordova.getActivity().getPackageName() + "/cache/tmprecording-" + System.currentTimeMillis() + ".3gp";
+      String tempFileName = handler.cordova.getActivity().getFilesDir().getAbsolutePath()
+                        + "/files/tmprecording-" + System.currentTimeMillis() + ".3gp";
+      LOG.d(LOG_TAG, "AudioPlayer File path: " + tempFileName);
+      return tempFileName;
     }
 
     /**
@@ -179,7 +182,7 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
         /* this is a hack to save the file as the specified name */
 
         if (!file.startsWith("/")) {
-            file = "/data/data/" + handler.cordova.getActivity().getPackageName() + "/cache/" + file;
+            file = handler.cordova.getActivity().getFilesDir().getAbsolutePath() + "/files/" + file;
         }
 
         int size = this.tempFiles.size();
